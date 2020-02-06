@@ -1,39 +1,17 @@
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
 
+import java.util.Scanner;
 
 class Mainclass {
 
 	public static void main(String args[]) {
+        Scanner reader = new Scanner(System.in);
 
-        BufferedReader reader = null;
-        reader = new BufferedReader(new InputStreamReader(System.in));
+        Dog dog1 = new Dog(reader);
+        dog1.speak(reader);
 
-        System.out.print("Give a name to the dog: ");
-        Dog dog1 = new Dog(askInput(reader));
-        System.out.print("What does a dog say: ");
-        dog1.speak(askInput(reader));
-
-        try {
-            reader.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        reader.close();
     }
     
-    public static String askInput(BufferedReader reader) {
-        try {
-            String line;
-            line = reader.readLine();
-            return line;
-    
-        
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return "Fail";
-    }
 
 }
 
