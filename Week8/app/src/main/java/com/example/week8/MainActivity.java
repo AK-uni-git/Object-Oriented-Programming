@@ -31,7 +31,7 @@ public class MainActivity extends AppCompatActivity {
     private String selectedBottle;
     private String selectedVolume;
     private Context context;
-    private String receiptToWrite;
+    private String receiptToWrite = " ";
     private EditText fileName;
 
     @Override
@@ -133,15 +133,14 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void handleBuyButton (View v) {
-        System.out.println("BUY WAS PRESSED");
         Bottle sodaToBuy = bottleDispenser.getBottle(selectedBottle, selectedVolume);
         if(sodaToBuy == null) {
             output.setText("Bottle '" + selectedBottle + "' with a volume of '" + selectedVolume + "' is not available.\nPlease select correct bottle from the list.");
-            System.out.println("NULL WAS RETURNED");
+            //System.out.println("NULL WAS RETURNED");
             return;
         } else {
             output.setText(bottleDispenser.buyBottle(sodaToBuy));
-            System.out.println("BOTTLE WAS BOUGHT");
+            //System.out.println("BOTTLE WAS BOUGHT");
             moneyIndicator.setText(String.format("Current balance: %.2f€", bottleDispenser.getMoney() ));
             receiptToWrite = "Receipt for bottle dispenser.\nYou bought one '" + sodaToBuy.getName() + "' with a volume of '" + sodaToBuy.getVolume() + "' and at the price of '" + sodaToBuy.getPrice() + "'\n\nThank you for your purchase and buy again.";
         }
